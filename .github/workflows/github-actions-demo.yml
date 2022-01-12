@@ -23,5 +23,5 @@ jobs:
           done
           echo '::set-output name=CHANGED_DIRECTORIES::$changed_directories'
       - run: |
-          changed_directories = ${{ steps.files.outputs.CHANGED_DIRECTORIES }}
+          changed_directories=${{ steps.files.outputs.CHANGED_DIRECTORIES }}
           echo $changed_directories
