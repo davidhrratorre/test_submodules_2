@@ -15,7 +15,7 @@ jobs:
       - id: files
         uses: jitterbit/get-changed-files@v1
       - run: |
-          changed_directories = ()
+          changed_directories=()
           for changed_file in ${{ steps.files.outputs.all }}; do
             case "$changed_file" in 
               *"templates"* ) changed_directories+="$(cut -d'/' -f2 <<<"$changed_file")" ;;
