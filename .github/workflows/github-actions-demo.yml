@@ -21,4 +21,7 @@ jobs:
               *"templates"* ) changed_directories+="$(cut -d'/' -f2 <<<"$changed_file")" ;;
             esac
           done
+          echo '::set-output name=CHANGED_DIRECTORIES::$changed_directories'
+      - run: |
+          changed_directories = ${{ steps.files.outputs.CHANGED_DIRECTORIES }}
           echo $changed_directories
