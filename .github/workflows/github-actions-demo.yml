@@ -14,13 +14,16 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - id: files
         uses: jitterbit/get-changed-files@v1
+      - name: Get changed directories
+        id: changed-dirs
+        run: |
+            changed_directories=''
+            for changed_file in ${{ steps.files.outputs.all }}; do
+              case "$changed_file" in 
+                *"templates"* ) changed_directories+=" $(cut -d'/' -f2 <<<"$changed_file")" ;;
+              esac
+            done
+            echo $changed_directories
+            echo '::set-output name=CHANGED_DIRECTORIES::$changed_directories'
       - run: |
-          changed_directories=()
-          for changed_file in ${{ steps.files.outputs.all }}; do
-            case "$changed_file" in 
-              *"templates"* ) changed_directories+="$(cut -d'/' -f2 <<<"$changed_file")" ;;
-            esac
-          done
-          echo '::set-output name=CHANGED_DIRECTORIES::$changed_directories'
-      - run: |
-          echo "${{ steps.files.outputs.CHANGED_DIRECTORIES }}"
+          echo "${{ steps.changed-dirs.outputs.CHANGED_DIRECTORIES }}"
