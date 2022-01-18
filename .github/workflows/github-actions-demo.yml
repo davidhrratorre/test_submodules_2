@@ -12,6 +12,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Install postmark client
         run: npm i postmark-cli -g
       - name: Push common layouts
