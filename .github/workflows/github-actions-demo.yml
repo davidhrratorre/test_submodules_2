@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'templates/package-lock.json'
       - name: Install postmark client
-        run: npm i postmark-cli -g
+        run: npm i postmark-cli
       - name: Push common layouts
         run: |
           echo "Pushing layouts..."
