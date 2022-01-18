@@ -28,7 +28,7 @@ jobs:
           key: npm-${{ hashFiles('templates/package-lock.json') }}
           restore-keys: npm-
       - name: Install postmark client
-        run: npm ci postmark-cli
+        run: npx npm ci postmark-cli
       - name: Push common layouts
         run: |
           echo "Pushing layouts..."
