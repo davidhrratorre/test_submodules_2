@@ -8,14 +8,15 @@ on:
 defaults:
   run:
     working-directory: templates
+env:
+  first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
+  second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - env:
-          first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
-          second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
+      
       - name: Install postmark client
         run: npm i postmark-cli -g
       - name: Push common layouts
