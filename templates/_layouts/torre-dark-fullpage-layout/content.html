@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+  <!--[if gte mso 15]>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:AllowPNG />
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  <![endif]-->
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{subject}}</title>
+
+  <style type="text/css">
+    .body-container {
+      width:100%;
+      margin:0;
+      padding: 16px 0;
+      -webkit-text-size-adjust:100%;
+      -ms-text-size-adjust:100%;
+      font-family:Muli,Helvetica,Arial,sans-serif !important;
+      color: #EAEAEA !important;
+      background-color: #010101;
+      font-size:14px;
+    }
+
+    * {
+      font-family: Muli, Helvetica, Arial, sans-serif !important;
+    }
+
+    .main-container {
+      margin:0 auto;
+      max-width:600px;
+      padding:16px;
+    }
+
+    .logo {
+      width: 79px;
+      margin-left: 0;
+    }
+
+    .content-container {
+      margin-top:24px;
+      padding:0;
+      width:100%;
+    }
+
+    .content-container p,
+    .content-container div {
+      color: #EAEAEA !important;
+    }
+
+    .torre-footer {
+      color: #A9A9AB !important;
+      clear: both;
+      display: block;
+      font-size: 12px;
+      line-height: 14px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .footer-direction {
+      text-decoration: none;
+      color: #A9A9AB;
+    }
+
+    a[href]:not(.call-to-action-container--primary):not([style*="background"]),
+    a[href]:not(.call-to-action-container--primary):not([style*="background"]) * {
+      color: #CDDC39 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="body-container">
+    <div class="main-container">
+      <img class="logo" src="https://s3-us-west-2.amazonaws.com/torre-media/static/torre_dark.png" alt="Torre">
+      <div class="content-container">
+        {{{ @content }}}
+      </div>
+      <p class="torre-footer">
+        © Torre Labs Inc.
+        <br>
+        <a class="footer-direction">77 Van Ness Ave., Suite 101-1219, San Francisco, CA 94102.</a>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>
