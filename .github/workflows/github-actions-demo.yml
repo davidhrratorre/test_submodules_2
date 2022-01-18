@@ -12,7 +12,7 @@ jobs:
       - name: Install postmark client
         run: npm i postmark-cli -g
       - name: Push common layouts
-        working-directory: ./templates
+        working-directory: templates
         env:
           first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
         run: |
@@ -20,7 +20,7 @@ jobs:
           cd ./_layouts
           echo "$first_server_api_token" | postmark templates push ./ -f
       - name: Push First server
-        working-directory: ./templates
+        working-directory: templates
         env:
           first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
         run: |
@@ -34,7 +34,7 @@ jobs:
           cd ..
           echo "$first_server_api_token" | postmark templates push ./ -f
       - name: Push Second server
-        working-directory: ./templates
+        working-directory: templates
         env:
           second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
         run: |
