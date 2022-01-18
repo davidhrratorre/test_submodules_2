@@ -21,8 +21,14 @@ jobs:
           node-version: '12'
           cache: 'npm'
           cache-dependency-path: 'templates/package-lock.json'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('templates/package-lock.json') }}
+          restore-keys: npm-
       - name: Install postmark client
-        run: npm i postmark-cli
+        run: npm ci postmark-cli
       - name: Push common layouts
         run: |
           echo "Pushing layouts..."
