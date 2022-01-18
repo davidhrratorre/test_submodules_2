@@ -25,10 +25,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('templates/package-lock.json') }}
+          key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
-      - name: Install postmark client
-        run: npx npm ci postmark-cli
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
       - name: Push common layouts
         run: |
           echo "Pushing layouts..."
