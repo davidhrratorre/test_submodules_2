@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "Pushing layouts..."
           cd ./_layouts
-          echo "$first_server_api_token" | postmark templates push ./ -f
+          echo "$first_server_api_token" | npx postmark templates push ./ -f
       - name: Push servers layouts
         run: |
           api_tokens=($first_server_api_token $second_server_api_token)
@@ -37,7 +37,7 @@ jobs:
             then
               echo "Pushing layouts for ${server_routes[$i]} ..."
               cd ./${server_routes[$i]}/_layouts
-              echo "${api_tokens[$i]}" | postmark templates push ./ -f
+              echo "${api_tokens[$i]}" | npx postmark templates push ./ -f
               cd ../..
             else
               echo "No layouts to push from ${server_routes[$i]}"
@@ -50,6 +50,6 @@ jobs:
           for i in ${!server_routes[@]}; do
             echo "Pushing templates for ${server_routes[$i]} ..."
             cd ./${server_routes[$i]}/
-            echo "${api_tokens[$i]}" | postmark templates push ./ -f
+            echo "${api_tokens[$i]}" | npx postmark templates push ./ -f
             cd ..
           done
