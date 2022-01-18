@@ -28,7 +28,7 @@ jobs:
             cd ./templates/first-server/_layouts
             echo "$first_server_api_token" | postmark templates push ./ -f
           fi
-          cd "Pushing templates..."
+          echo "Pushing templates..."
           cd ..
           echo "$first_server_api_token" | postmark templates push ./ -f
       - name: Push Second server
@@ -41,7 +41,7 @@ jobs:
             cd ./templates/second-server/_layouts
             echo "$second_server_api_token" | postmark templates push ./ -f
           fi
-          cd "Pushing templates..."
+          echo "Pushing templates..."
           cd ..
           echo "$second_server_api_token" | postmark templates push ./ -f
         
