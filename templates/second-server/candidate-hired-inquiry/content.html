@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+  <meta name=”x-apple-disable-message-reformatting”>
+  <style type="text/css">
+    .content-container {
+      margin-top: 24px;
+      padding: 0;
+      width: 100%;
+    }
+    .content-container__paragraph {
+      margin: 0;
+      padding: 0;
+    }
+    .links {
+      text-decoration: none;
+      background-color: #383B40;
+    }
+    .preferences {
+      background-color: #383B40;
+      padding: 16px 16px;
+    }
+    .preferences ul {
+      margin: 4px 0 0 0;
+      padding-left: 16px;
+    }
+    li {
+      margin: 15px 0 0 0;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content-container">
+    <div class="preferences">
+      <p class="content-container_paragraph">Hi, {{personFirstName}}!</p>
+      <p class="content-container_paragraph">Quick question: Have you been hired recently? If so, please select who hired you.</p>
+      <ul>
+        <li style="color:#D69600"> <a class="links" href="{{notHiredUrl}}" target="_blank" style="color:#D69600"> No, you haven't been hired </a></li>
+        {{#each ../applications}}
+          <li style="color:#CDDC39"> <a class="links" href="{{url}}" target="_blank" style="color:#CDDC39"> {{organizationName}} </a></li>
+        {{/each}}
+        <li style="color:#D69600"> <a class="links" href="{{hiredByAnotherCompanyUrl}}" target="_blank" style="color:#D69600"> By another company or person </a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>

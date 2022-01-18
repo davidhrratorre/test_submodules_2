@@ -1,0 +1,7 @@
+{
+    "Name": "candidate-hired-inquiry",
+    "Alias": "candidate-hired-inquiry",
+    "Subject": "Have you been hired?",
+    "TemplateType": "Standard",
+    "LayoutTemplate": "torre-dark-layout"
+  }

@@ -1,0 +1,7 @@
+{
+  "Name": "added-as-team-member",
+  "Alias": "added-as-team-member",
+  "Subject": "{{subject}}",
+  "TemplateType": "Standard",
+  "LayoutTemplate": "torre-dark-layout"
+}
