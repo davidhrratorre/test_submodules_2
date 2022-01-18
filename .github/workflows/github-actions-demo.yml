@@ -11,19 +11,25 @@ jobs:
     steps:
       - name: Install postmark client
         run: npm i postmark-cli -g
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - id: files
-        uses: jitterbit/get-changed-files@v1
-      - name: Get changed directories
-        id: changed-dirs
+      - name: Push First server
+        env:
+          first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
         run: |
-            changed_directories=''
-            for changed_file in ${{ steps.files.outputs.all }}; do
-              case "$changed_file" in 
-                *"templates"* ) changed_directories+=" $(cut -d'/' -f2 <<<"$changed_file")" ;;
-              esac
-            done
-            echo $changed_directories
-            echo '::set-output name=CHANGED_DIRECTORIES::$changed_directories'
-      - run: |
-          echo "${{ steps.changed-dirs.outputs.CHANGED_DIRECTORIES }}"
+          echo "Pushing layouts..."
+          cd ./templates/first-server/_layouts
+          echo "$first_server_api_token" | postmark templates push ./ -f
+          cd "Pushing templates"
+          cd ..
+          echo "$first_server_api_token" | postmark templates push ./ -f
+      - name: Push Second server
+        env:
+          second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
+        run: |
+          echo "Pushing layouts..."
+          cd ./templates/second-server/_layouts
+          echo "$second_server_api_token" | postmark templates push ./ -f
+          cd "Pushing templates"
+          cd ..
+          echo "$second_server_api_token" | postmark templates push ./ -f
+        
+          
