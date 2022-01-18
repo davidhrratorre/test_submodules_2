@@ -13,40 +13,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - env:
+          first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
+          second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
       - name: Install postmark client
         run: npm i postmark-cli -g
       - name: Push common layouts
-        env:
-          first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
         run: |
           echo "Pushing layouts..."
           cd ./_layouts
           echo "$first_server_api_token" | postmark templates push ./ -f
-      - name: Push First server
-        env:
-          first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
+      - name: Push First server layouts
         run: |
           if [ -d "./first-server/_layouts" ] 
           then
             echo "Pushing layouts..."
             cd ./first-server/_layouts
             echo "$first_server_api_token" | postmark templates push ./ -f
+          else
+            echo "No layouts to push from first server"
           fi
+      - name: Push First server templates
+        run: |
           echo "Pushing templates..."
-          cd ..
+          cd ./first-server/
           echo "$first_server_api_token" | postmark templates push ./ -f
-      - name: Push Second server
-        env:
-          second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
+      - name: Push Second server layouts
         run: |
           if [ -d "./second-server/_layouts" ] 
           then
             echo "Pushing layouts..."
             cd ./second-server/_layouts
             echo "$second_server_api_token" | postmark templates push ./ -f
+          else
+            echo "No layouts to push from first server"
           fi
+      - name: Push Second server templates
           echo "Pushing templates..."
-          cd ..
+          cd ./second-server/
           echo "$second_server_api_token" | postmark templates push ./ -f
         
           
