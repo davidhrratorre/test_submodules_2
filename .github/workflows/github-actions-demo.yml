@@ -49,6 +49,7 @@ jobs:
             echo "No layouts to push from second server"
           fi
       - name: Push Second server templates
+        run: |
           echo "Pushing templates..."
           cd ./second-server/
           echo "$second_server_api_token" | postmark templates push ./ -f
