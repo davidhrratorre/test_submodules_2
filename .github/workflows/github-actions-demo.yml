@@ -9,14 +9,13 @@ defaults:
   run:
     working-directory: templates
 env:
-  first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
+  first_servers_api_tokens: ${{secrets.FIRST_SERVER_API_TOKEN}}
   second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
       - name: Install postmark client
         run: npm i postmark-cli -g
       - name: Push common layouts
@@ -24,35 +23,28 @@ jobs:
           echo "Pushing layouts..."
           cd ./_layouts
           echo "$first_server_api_token" | postmark templates push ./ -f
-      - name: Push First server layouts
+      - name: Push servers layouts
         run: |
-          if [ -d "./first-server/_layouts" ] 
-          then
-            echo "Pushing layouts..."
-            cd ./first-server/_layouts
-            echo "$first_server_api_token" | postmark templates push ./ -f
-          else
-            echo "No layouts to push from first server"
-          fi
-      - name: Push First server templates
+          api_tokens=($first_server_api_token $second_server_api_token)
+          server_routes=("first-server" "second-server")
+          for i in ${!server_routes[@]}; do
+            if [ -d "./${server_routes[$i]}/_layouts" ] 
+            then
+              echo "Pushing layouts for ${server_routes[$i]} ..."
+              cd ./${server_routes[$i]}/_layouts
+              echo "${api_tokens[$i]}" | postmark templates push ./ -f
+              cd ../..
+            else
+              echo "No layouts to push from ${server_routes[$i]}"
+            fi
+          done
+      - name: Push servers templates
         run: |
-          echo "Pushing templates..."
-          cd ./first-server/
-          echo "$first_server_api_token" | postmark templates push ./ -f
-      - name: Push Second server layouts
-        run: |
-          if [ -d "./second-server/_layouts" ] 
-          then
-            echo "Pushing layouts..."
-            cd ./second-server/_layouts
-            echo "$second_server_api_token" | postmark templates push ./ -f
-          else
-            echo "No layouts to push from second server"
-          fi
-      - name: Push Second server templates
-        run: |
-          echo "Pushing templates..."
-          cd ./second-server/
-          echo "$second_server_api_token" | postmark templates push ./ -f
-        
-          
+          api_tokens=($first_server_api_token $second_server_api_token)
+          server_routes=("first-server" "second-server")
+          for i in ${!server_routes[@]}; do
+            echo "Pushing templates for ${server_routes[$i]} ..."
+            cd ./${server_routes[$i]}/
+            echo "${api_tokens[$i]}" | postmark templates push ./ -f
+            cd ..
+          done
