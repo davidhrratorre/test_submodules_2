@@ -9,7 +9,7 @@ defaults:
   run:
     working-directory: templates
 env:
-  first_servers_api_tokens: ${{secrets.FIRST_SERVER_API_TOKEN}}
+  first_server_api_token: ${{secrets.FIRST_SERVER_API_TOKEN}}
   second_server_api_token: ${{secrets.SECOND_SERVER_API_TOKEN}}
 jobs:
   Explore-GitHub-Actions:
