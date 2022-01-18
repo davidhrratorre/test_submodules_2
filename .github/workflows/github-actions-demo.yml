@@ -46,7 +46,7 @@ jobs:
             cd ./second-server/_layouts
             echo "$second_server_api_token" | postmark templates push ./ -f
           else
-            echo "No layouts to push from first server"
+            echo "No layouts to push from second server"
           fi
       - name: Push Second server templates
           echo "Pushing templates..."
