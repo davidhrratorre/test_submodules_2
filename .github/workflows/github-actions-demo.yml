@@ -37,7 +37,7 @@ jobs:
       - name: Push servers layouts
         run: |
           api_tokens=($first_server_api_token $second_server_api_token)
-          server_routes=("first-server" "second-server")
+          server_routes=("first server" "second-server")
           for i in ${!server_routes[@]}; do
             if [ -d "./${server_routes[$i]}/_layouts" ] 
             then
@@ -52,7 +52,7 @@ jobs:
       - name: Push servers templates
         run: |
           api_tokens=($first_server_api_token $second_server_api_token)
-          server_routes=("first-server" "second-server")
+          server_routes=("first server" "second-server")
           for i in ${!server_routes[@]}; do
             echo "Pushing templates for ${server_routes[$i]} ..."
             cd ./${server_routes[$i]}/
