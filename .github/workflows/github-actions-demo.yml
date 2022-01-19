@@ -42,7 +42,7 @@ jobs:
             if [ -d "./${server_routes[$i]}/_layouts" ] 
             then
               echo "Pushing layouts for ${server_routes[$i]} ..."
-              cd ./${server_routes[$i]}/_layouts
+              cd "./${server_routes[$i]}/_layouts"
               echo "${api_tokens[$i]}" | npx postmark templates push ./ -f
               cd ../..
             else
@@ -55,7 +55,7 @@ jobs:
           server_routes=("first server" "second-server")
           for i in ${!server_routes[@]}; do
             echo "Pushing templates for ${server_routes[$i]} ..."
-            cd ./${server_routes[$i]}/
+            cd "./${server_routes[$i]}/"
             echo "${api_tokens[$i]}" | npx postmark templates push ./ -f
             cd ..
           done
